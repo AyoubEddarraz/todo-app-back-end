@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body style="width: 100%; height: auto; overflow: hidden auto; background-color: #ecf0f1; color: black; font-family: 'Barlow Condensed', sans-serif; padding: 0; display: flex; justify-content: center; align-items: center; margin: 0;">
+
+    <div class="mail" style="position: relative; width: 100%; background-color: white; text-align: center; margin: 1rem; padding: 3rem 2rem;">
+
+        <header class="mail_head" style="font-size: 25px; font-weight: bold; text-align: start">
+            <h1>LOGO</h1>
+        </header>
+
+        <img th:src="${confirmation_email_cover_url}" width="200px" alt="mail confirm">
+
+        <div class="mail_body" style="text-align: start">
+
+            <h2>Hey <span th:text="${userLastName}"></span> ,</h2>
+
+            <p style="font-size: 18px">Thank you for joining .Do! To finish signing up, you just need to confirm that we got your email right.</p>
+
+            <p style="font-size: 18px">To confirm you email, please click this button:</p>
+
+            <a th:href="${urlConfirmation}" class="confirm_button">
+                <button style="
+                        width: 250px;
+                        height: 45px;
+                        font-size: 15px;
+                        margin: 1rem 0;
+                        outline: none;
+                        border: none;
+                        background: #2ecc71;
+                        color: white;
+                        transition: outline .3s ease-in-out;"
+                >
+                    confirm
+                </button>
+            </a>
+
+            <p style="color: #eb4d4b; font-size: 16px">Token expired after 10 minutes </p>
+
+            <p style="font-size: 18px">Welcome and thanks!</p>
+            <p style="font-size: 18px">the .Do Team</p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
