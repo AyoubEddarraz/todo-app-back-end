@@ -111,18 +111,21 @@ public class AccountServiceImp implements AccountService {
                 UserEntity user = getUserByEmail(email);
 
                 Map<String, Object> tokenClaims = new HashMap<>();
+                tokenClaims.put("email", user.getEmail());
                 tokenClaims.put("UID" , user.getUserId());
                 tokenClaims.put("roles", new ArrayList<>());
                 tokenClaims.put("authorities", new ArrayList<>());
 
                 String newAccessToken = Jwts.builder()
                         .setSubject(email)
+                        .setClaims(tokenClaims)
                         .setExpiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME_ACCESS_TOKEN))
                         .signWith(SignatureAlgorithm.HS512, JwtProperties.SECRET)
                         .compact();
 
                 String newRefreshToken = Jwts.builder()
                         .setSubject(email)
+                        .setClaims(tokenClaims)
                         .setExpiration(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME_REFRESH_TOKEN))
                         .signWith(SignatureAlgorithm.HS512, JwtProperties.SECRET)
                         .compact();
@@ -134,6 +137,8 @@ public class AccountServiceImp implements AccountService {
                         new ArrayList<>(),
                         new ArrayList<>()
                 );
+
+                System.out.println("hhhhh this is the new generated access token : " + tokenResponse.getAccessToken());
 
                 return tokenResponse;
 
